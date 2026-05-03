@@ -48,5 +48,17 @@ const foods = [
     price: 19,
   },
 ];
+const cartList = document.getElementById("cart-list");
 
 const menu = document.getElementById("menu");
+
+foods.forEach((food) => {
+  const div = document.createElement("div");
+  div.textContent = food.name + " -$" + food.price;
+  menu.appendChild(div);
+
+  const addCart = document.createElement("button");
+  addCart.textContent = "Add to Cart";
+  div.appendChild(addCart);
+  menu.appendChild(div);
+});
