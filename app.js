@@ -58,13 +58,22 @@ foods.forEach((food) => {
   const div = document.createElement("div");
   div.textContent = food.name + " -$ " + food.price;
 
+  // button addCart to the Shop Cart
   const addCart = document.createElement("button");
   addCart.addEventListener("click", () => {
     const li = document.createElement("li");
     li.textContent = food.name + "- $" + food.price;
+
+    // delete button of list
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Remove";
     li.appendChild(deleteBtn);
+
+    // Remove any items from the cart
+    deleteBtn.addEventListener("click", () => {
+      li.remove();
+    });
+
     cartList.appendChild(li);
     total = total + food.price;
     totalEl.textContent = total + "$";
