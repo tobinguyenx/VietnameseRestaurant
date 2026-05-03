@@ -49,15 +49,26 @@ const foods = [
   },
 ];
 const cartList = document.getElementById("cart-list");
+const totalEl = document.getElementById("total");
+let total = 0;
 
 const menu = document.getElementById("menu");
 
 foods.forEach((food) => {
   const div = document.createElement("div");
-  div.textContent = food.name + " -$" + food.price;
-  menu.appendChild(div);
+  div.textContent = food.name + " -$ " + food.price;
 
   const addCart = document.createElement("button");
+  addCart.addEventListener("click", () => {
+    const li = document.createElement("li");
+    li.textContent = food.name + "- $" + food.price;
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Remove";
+    li.appendChild(deleteBtn);
+    cartList.appendChild(li);
+    total = total + food.price;
+    totalEl.textContent = total + "$";
+  });
   addCart.textContent = "Add to Cart";
   div.appendChild(addCart);
   menu.appendChild(div);
