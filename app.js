@@ -56,7 +56,7 @@ const menu = document.getElementById("menu");
 
 foods.forEach((food) => {
   const div = document.createElement("div");
-  div.textContent = food.name + " -$ " + food.price;
+  div.textContent = food.name + " -$" + food.price;
 
   // button addCart to the Shop Cart
   const addCart = document.createElement("button");
@@ -72,6 +72,8 @@ foods.forEach((food) => {
     // Remove any items from the cart
     deleteBtn.addEventListener("click", () => {
       li.remove();
+      total = total - food.price;
+      totalEl.textContent = total + "$";
     });
 
     cartList.appendChild(li);

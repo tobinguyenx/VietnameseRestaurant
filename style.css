@@ -1,0 +1,47 @@
+body {
+  background-color: rgb(131, 220, 167);
+  font-family: Arial;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#menu div {
+  background-color: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#menu button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+#cart {
+  background-color: orange;
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#cart button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+h1 {
+  display: flex;
+  color: blue;
+}
