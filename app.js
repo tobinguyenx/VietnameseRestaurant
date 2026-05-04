@@ -51,9 +51,31 @@ const foods = [
 const cartList = document.getElementById("cart-list");
 const totalEl = document.getElementById("total");
 let total = 0;
+let cart = {};
 
 const menu = document.getElementById("menu");
 
+function renderCart() {
+  cartList.innerHTML = "";
+  Object.keys(cart).forEach((name) => {
+    const item = cart[name];
+    const li = document.createElement("li");
+    li.textContent =
+      name + " x" + item.quantity + " - $" + item.price * item.quantity;
+
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.addEventListener("click", () => {
+      total = total - item.price * item.quantity;
+      totalEl.textContent = total + "$";
+      delete cart[name];
+      renderCart();
+    });
+
+    li.appendChild(removeBtn);
+    cartList.appendChild(li);
+  });
+}
 foods.forEach((food) => {
   const div = document.createElement("div");
   div.textContent = food.name + " -$" + food.price;
@@ -61,24 +83,15 @@ foods.forEach((food) => {
   // button addCart to the Shop Cart
   const addCart = document.createElement("button");
   addCart.addEventListener("click", () => {
-    const li = document.createElement("li");
-    li.textContent = food.name + "- $" + food.price;
+    if (cart[food.name]) {
+      cart[food.name].quantity += 1;
+    } else {
+      cart[food.name] = { price: food.price, quantity: 1 };
+    }
 
-    // delete button of list
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "Remove";
-    li.appendChild(deleteBtn);
-
-    // Remove any items from the cart
-    deleteBtn.addEventListener("click", () => {
-      li.remove();
-      total = total - food.price;
-      totalEl.textContent = total + "$";
-    });
-
-    cartList.appendChild(li);
     total = total + food.price;
     totalEl.textContent = total + "$";
+    renderCart();
   });
   addCart.textContent = "Add to Cart";
   div.appendChild(addCart);
